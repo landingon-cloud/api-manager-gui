@@ -69,12 +69,11 @@ export const loginEpic = (action$, state$, {ajax} ) => action$.pipe(
          responseType: 'json'})
   ),
   map( (result) => {
-      if (typeof result.response.data !== 'undefined' &&
-      typeof result.response.data.token !== 'undefined') {
-          let token = result.response.data.token
+      if ( typeof result.response.token !== 'undefined') {
+          let token = result.response.token
           setCookie('admin_token', token);
           return { type: 'LOGIN.GRANTED', token };
-      } else if (result.response.error!==null) {
+      } else {
           return { type: 'LOGIN.ERROR', error: result.response.error };
       }
   })

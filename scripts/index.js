@@ -10,8 +10,17 @@ fastify.get('/', function (request, reply) {
     reply.send({ hello: 'world' });
 })
 
+fastify.get('/api/list-resources', function (request, reply) {
+    reply.send({ resources: [] });
+});
+
+fastify.get('/api/list-services', function (request, reply) {
+    reply.send({ services: [] });
+});
+
 fastify.post('/login', function (request, reply) {
     console.log('login', request.body);
+    reply.header('Access-Control-Allow-Origin','*');
     reply.send({ token : 'world' });
 });
 
