@@ -18,3 +18,18 @@ for install, then:
 > npm run start
 
 for starting dev server provided by webpack
+
+## Error codes
+
+For the specific purpose of the tool, special HTTP response code are used:
+
+- 200: OK (used for regular GET/OPTIONS requests)
+- 202: accepted (used for regular POST/PUT/PATCH response)
+- 401: unauthorized (with JSON payload indicating error and auth schema expected: JWT OR http-auth schema)
+- 420: client request error, with JSON payload, indicate that internal service refuse to serve
+- 530: internal service is not available or not reachable
+- 4xx or 2xx from internal service: only if so selected in the step definition and entrypoint passthrough setting
+
+## TODO
+
+- replace any call returning {data, error} with regular REST

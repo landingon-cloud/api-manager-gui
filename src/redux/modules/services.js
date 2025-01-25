@@ -127,16 +127,17 @@ export const newServiceEpic = (action$, state$) => action$.pipe(
 
 export const loadServiceEpic = (action$, state$, { ajax, getViaAjax }) => action$.pipe(
   ofType('SERVICES.LOAD'),
-  mergeMap(()=> getViaAjax(state$.value.loginStatus.token, "/list-services")),
+  mergeMap(()=> getViaAjax(state$.value.loginStatus.token, "/services")),
   map(result=> {
       if(result.status !== 200) {
           return {type: 'NETWORK.ERROR', status: result.status}
       }
-      const {data, error} = result.response;
+      //return {type: 'SERVICE.LIST', payload: result.response.services};
+      const {services, error} = result.response;
       if(error) {
           return {type: 'RESTAPI.ERROR', error}
       } else {
-          return {type: 'SERVICE.LIST', payload: data.services};
+          return {type: 'SERVICE.LIST', payload: services};
       }
   })
 );
