@@ -8,7 +8,8 @@ import {ServiceFilterFormat} from './ServiceFilterFormat';
 import { useSelector } from 'react-redux';
 
 export default ({enquireEdit, editProp, step, save}) => {
-    const availableFolders = useSelector(s=>s.resources.zshell_folders);
+    const availableFolders = useSelector(s=>s.resources.zshell_folders) || [];
+    
     return (
         <Container>
             {step.service?'':<Alert color="danger">

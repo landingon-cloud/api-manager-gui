@@ -9,6 +9,8 @@ import EntryPoint from './EntryPoint';
 import ServiceSetting from './ServiceSetting';
 import ServiceSettingShow from './ServiceSettingShow';
 
+import SaveBox from '../SaveBox';
+
 const AddEntryPoint = ({serviceid}) => {
     const dispatch = useDispatch();
     const _entry = useRef(null);
@@ -46,21 +48,6 @@ const EntryPoints = ({detail,serviceid:id}) => {
             {list}
         </ListGroup>
     )
-}
-
-const SaveBox = ({detail, serviceid}) => {
-    const dispatch = useDispatch()
-    const id = serviceid
-    let changes = (detail && detail.changes)?detail.changes:[];
-    const saveService = () => {
-        dispatch({type: 'SERVICE.SAVE',id: id})
-    }
-    return (<div>
-        <div>
-        changes: {changes.map((change,i)=>(<span key={`change-${i}`} title={JSON.stringify(change,null,"\t")}>{change.op} </span>))}
-        </div>
-        <Button onClick={saveService}>Save</Button>
-    </div>)
 }
 
 const SetNameServiceForm = ({detail}) => {
@@ -115,7 +102,8 @@ export default () => {
                     <AddEntryPoint serviceid={id}/>
                 </Container>
                 <div>
-                    <SaveBox detail={detail} serviceid={id} />
+                    <hr/>
+                    <SaveBox serviceid={id} />
                 </div>
             </Container>
         </div>

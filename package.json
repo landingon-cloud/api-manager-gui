@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "start": "PUBLIC_URL=/ API_BASE=http://localhost:6631/ API_AUTH=http://localhost:6631/login webpack-dev-server --mode development --open",
+    "start": "PUBLIC_URL=/ API_BASE=http://localhost:6631/ API_AUTH=http://localhost:6631/login BASE_REALURL=http://example.com/ webpack-dev-server --mode development --open",
     "test-server": "node scripts/test-server.js",
     "build": "PUBLIC_URL=/apimanager/ webpack --mode production",
     "startold": "node scripts/start.js",

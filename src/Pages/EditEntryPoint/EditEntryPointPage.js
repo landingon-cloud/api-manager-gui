@@ -1,7 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { useParams } from 'react-router';
 //import EditEntryPoint from './EditEntryPoint';
 import * as homeactions from './actions/loads.js'
+
+import SaveBox from '../SaveBox';
 
 import { Container, Button, ListGroupItem, ListGroup } from 'reactstrap';
 
@@ -31,29 +34,6 @@ const SortableList = SortableContainer(({ steps }) => {
         </ListGroup>
     );
 });
-
-const EntryPointContent = (detail, entry) => {
-    return (
-        <Container className="container-border">
-        <div><small>real url: <a href={realUrl} target="blank">{realUrl}</a></small></div>
-            <h3>{detail.name}</h3>
-            <h2>{EntryPoint.method} {EntryPoint.url}</h2>
-            <EntryPointDetail {...EntryPoint} url={url} method={method} type={type} authtype={authtype} jwt_perms={jwt_perms} saveEntryProp={saveEntryProp} contentType={contentType} />
-            <div>
-                <small><em>self</em>===[this service name]. Available input parameters (use <strong>get.</strong><i>&lt;anything&gt;</i> and <strong>body.</strong><i>&lt;anything&gt;</i> freely):</small>
-                <p>
-                {inputParameters.map((p,i)=><em key={'i'+i.toString()}>{p}</em>).reduce((prev, curr) => [prev, ', ', curr])}
-                </p>
-                <p>For file uploaded, an array of files[], each with <em>filepath</em>, <em>filename</em>, <em>field</em></p>
-            </div>
-            <Container className="container-border">
-                <h3>Steps</h3>
-                {PipeSteps}
-                {this.renderAddStepButton()}
-            </Container>
-        </Container>
-    )
-}
 
 let calcInputParameters = (EntryPoint)  => {
     const { url, method, type, authtype } = EntryPoint;
@@ -170,6 +150,7 @@ function EditEntryPointPage({match})
             <div>
             </div>
             <hr />
+            <SaveBox serviceid={id} />
             </Container>
         )
     } else {
