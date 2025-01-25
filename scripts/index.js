@@ -32,26 +32,20 @@ const entrypoint = {
     "name": "accounting",
     "definition": {
         "name": "accounting",
-        "entrypoints": [
+        "entry_points": [
             {
-                "name": "accounting",
-                "method": "POST",
-                "type": "json",
-                "authtype": "jwt",
-                "jwt_perms": [
-                    "accounting"
-                ],
-                "steps": [
+                "method": "GET",
+                "type": "sync",
+                "url": "/catfile/:filename",
+                "authtype": "FREE",
+                "pipeline_steps": [
                     {
-                        "name": "accounting",
-                        "method": "POST",
-                        "type": "json",
-                        "authtype": "jwt",
-                        "jwt_perms": [
-                            "accounting"
-                        ]
+                        "type": "zshell",
+                        "service": "tcp://zcmdexecutor_zcmdexecutor_1:5553",
+                        "command": "cat ${url.filename}"
                     }
-                ]
+                ],
+                "contentType": "text/plain; charset=utf-8"
             }
         ]
     }
@@ -63,7 +57,7 @@ fastify.register(async function (fastify, opts) {
         reply.send({ hello: 'world' });
     })
     
-    fastify.get('/api/list-resources', function (request, reply) {
+    fastify.get('/api/resources', function (request, reply) {
         reply.send({ resources: [] });
     });
     
@@ -74,6 +68,14 @@ fastify.register(async function (fastify, opts) {
         reply.send({ services});
         
     });
+
+    fastify.get('/api/service/:name', function (request, reply) {
+        const name = request.params.name;
+        console.log('service', name);
+        reply.header('Access-Control-Allow-Origin','*');
+        reply.send({ service: entrypoint });
+    });
+
     
     fastify.post('/login', function (request, reply) {
         console.log('login', request.body);
@@ -82,7 +84,7 @@ fastify.register(async function (fastify, opts) {
     });
     
     
-    const apientries = ['/login', '/api/list-resources', '/api/services'];
+    const apientries = ['/login', '/api/resources', '/api/services', '/api/service/:name'];
     
     for (let entry of apientries) {
         fastify.options(entry, function (request, reply) {

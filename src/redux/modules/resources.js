@@ -23,7 +23,7 @@ export const loadResourceEpic = ( action$, state$, {ajax}) => action$.pipe(
         let ajaxOpt = {}
         let token = state$.value.loginStatus.token
         ajaxOpt = {
-            url: `${apiman_servicebase}api/list-resources`,
+            url: `${apiman_servicebase}api/resources`,
             headers: {
                 'Authorization': 'Bearer '+ token
             },

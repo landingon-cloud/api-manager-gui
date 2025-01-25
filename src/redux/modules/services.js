@@ -103,14 +103,7 @@ export const services = ( state = initialState, action) => {
 }
 
 const newService = (name) => {
-    return {name:name, isNew:true, definition: {image: undefined, volumes: [{
-        "Destination": "/common/etc/dbconn",
-        "Source": "/storage/saas/docker_swarm/common/etc/dbconn"
-    },
-    {
-        "Destination": "/var/run/docker.sock",
-        "Source": "/var/run/docker.sock"
-    }], resources: [], entry_points: []}, changes:[]};
+    return {name:name, isNew:true, definition: {image: undefined, volumes: [], resources: [], entry_points: []}, changes:[]};
 }
 
 export const newServiceEpic = (action$, state$) => action$.pipe(
@@ -163,7 +156,7 @@ export const loadServDetailEpic = (action$, state$, { getViaAjax, ajax } ) => ac
                     return getViaAjax(state$.value.loginStatus.token, `/service/${action.payload}`).pipe(
                         mergeMap( ({response}) => {
                             if(response.error) return throwError({ type: 'APIERROR', error: response.error});
-                            if(response.data) return ObservableOf({type: 'SERVICE.DETAIL', id: action.payload, payload: {...response.data, name:action.payload}});
+                            if(response.service) return ObservableOf({type: 'SERVICE.DETAIL', payload: {...response.service}});
                             return throwError({ type: 'APIERROR', error: JSON.stringify(response,null,'\t')});
                         }),
                         catchError(error=> {

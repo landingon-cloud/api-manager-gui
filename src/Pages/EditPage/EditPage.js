@@ -100,6 +100,9 @@ export default () => {
         console.log('isedit');
         openSetting(true);
     }
+    if (!detail) {
+        return <div>loading</div>
+    }
     return (
         <div>
             <Container>
