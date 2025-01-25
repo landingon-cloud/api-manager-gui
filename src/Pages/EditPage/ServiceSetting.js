@@ -49,7 +49,8 @@ class ServiceSetting extends Component
         const enquireEdit = (prop) => () => {
             this.setState(()=>{return {editProp:prop}})
         }
-        const imglist = Object.keys(this.props.resources.service_images);
+        //const imglist = Object.keys(this.props.resources.service_images);
+        const imglist = this.props.resources.service_images;
         return (
             <div>
         <div>

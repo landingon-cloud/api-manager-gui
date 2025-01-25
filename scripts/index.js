@@ -60,7 +60,55 @@ const resources = {
             name: 'easybook',
             address: 'tcp://apiman_apiman_1:5555'
         }
-    ]
+    ],
+    permissions: [
+        'admin',
+        'user',
+        'guest',
+        'superuser',
+        'editor',
+        'viewer',
+        'email',
+        'phone',
+        'address',
+        'impersonate',
+    ],
+    service_images: [
+        'apimanager-img:0.11',
+        'apimanager-img:0.12',
+        'apimanager-img:0.13',
+        'apimanager-img:0.14',
+    ],
+    service_images_features: {
+        'apimanager-img:0.11': [
+            'zshell',
+            'zsql',
+            'http',
+            'hsql',
+            'zmq',
+        ],
+        'apimanager-img:0.12': [
+            'zshell',
+            'zsql',
+            'http',
+            'hsql',
+            'zmq',
+        ],
+        'apimanager-img:0.13': [
+            'zshell',
+            'zsql',
+            'http',
+            'hsql',
+            'zmq',
+        ],
+        'apimanager-img:0.14': [
+            'zshell',
+            'zsql',
+            'http',
+            'hsql',
+            'zmq',
+        ]
+    }
 };
 
 const entrypoint = {
