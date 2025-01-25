@@ -54,6 +54,11 @@ const resources = {
             format: "zsql",
             name: "apiman",
             address: "tcp://apiman_apiman_1:5555",
+        },
+        {
+            format: 'zmq',
+            name: 'easybook',
+            address: 'tcp://apiman_apiman_1:5555'
         }
     ]
 };

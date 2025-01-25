@@ -19,7 +19,7 @@ export default ({enquireEdit, editProp, step, save}) => {
             Service must be selected!
             </Alert>}
             <small>Call an internal ZMQ service</small>
-            <ServiceFilterFormat format={false}
+            <ServiceFilterFormat format="zmq"
                 step={step}
                 save={save('service')} enquireEdit={enquireEdit} editMode={editProp==="service"} />
             <small>{help_msg_format}</small>

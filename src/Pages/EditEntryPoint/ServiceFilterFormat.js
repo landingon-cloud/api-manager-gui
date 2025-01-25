@@ -10,7 +10,7 @@ export const ServiceFilterFormat = ({format, step, editMode, enquireEdit, save})
         )
     } else {
         const doFilter = format?s=>s.format===format:()=>true;
-        const options = services.filter(doFilter).map(s=>{return {name: s.name + ' (' + s.ztype + ')', value: s.address}}).sort((s1,s2)=>s1.name>s2.name?1:-1)
+        const options = services.filter(doFilter).map(s=>{return {name: `${s.name} ( ${s.address} )`, value: s.address}}).sort((s1,s2)=>s1.name>s2.name?1:-1)
         return (
             <DropDownByClick name="service" value={step.service} options={options}
                     save={save} enquireEdit={enquireEdit} editMode={editMode} />
