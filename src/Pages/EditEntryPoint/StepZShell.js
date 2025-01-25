@@ -19,7 +19,7 @@ export default ({enquireEdit, editProp, step, save}) => {
                 <div>
                     <small>Available Folders: </small> {availableFolders.map((f,i,c,a)=>(<span key={i.toString()}><strong>{f}</strong> </span>))}
                 </div>
-            <ServiceFilterFormat format="shell"
+            <ServiceFilterFormat format="zshell"
                 step={step}
                 save={save('service')} enquireEdit={enquireEdit} editMode={editProp==="service"} />
         <InputTextareaByClick name="command" value={step.command}

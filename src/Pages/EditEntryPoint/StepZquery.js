@@ -13,7 +13,7 @@ export default ({enquireEdit, editProp, step, save}) => {
             Service must be selected!
             </Alert>}
             <small>Query execution by a service (command over ZMQ channel)</small>
-            <ServiceFilterFormat format="sql"
+            <ServiceFilterFormat format="zsql"
                 step={step}
                 save={save('service')} enquireEdit={enquireEdit} editMode={editProp==="service"} />
         <InputTextareaByClick name="query" value={step.query}

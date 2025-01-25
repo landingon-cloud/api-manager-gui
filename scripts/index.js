@@ -28,6 +28,36 @@ const services = [
     }
 ];
 
+const resources = {
+    services: [
+        {
+            format: "hsql",
+            name: "accounting",
+            address: "http://hsql_123:8080",
+        },
+        {
+            format: "zshell",
+            name: "adminAPI",
+            address: "tcp://adminapi_adminapi_1:5555",
+        },
+        {
+            format: "http",
+            name: "amazon_sqs",
+            address: "http://amazon_sqs:9324",
+        },
+        {
+            format: "zshell",
+            name: "amazonsp",
+            address: "tcp://amazonsp_amazonsp_1:5555",
+        },
+        {
+            format: "zsql",
+            name: "apiman",
+            address: "tcp://apiman_apiman_1:5555",
+        }
+    ]
+};
+
 const entrypoint = {
     "name": "accounting",
     "definition": {
@@ -58,7 +88,8 @@ fastify.register(async function (fastify, opts) {
     })
     
     fastify.get('/api/resources', function (request, reply) {
-        reply.send({ resources: [] });
+        reply.header('Access-Control-Allow-Origin','*');
+        reply.send(resources);
     });
     
     fastify.get('/api/services', function (request, reply) {
