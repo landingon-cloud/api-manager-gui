@@ -30,7 +30,7 @@ module.exports = {
   devServer: {
       historyApiFallback: true,
   },
-  devtool: 'source-maps',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -42,12 +42,15 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-        loader: 'url-loader?limit=1000000'
+        loader: 'url-loader',
+        options: {
+          limit: 100000
+        }
       },
       {
-        test: /\.css$/,
-        use: [ "style-loader", "css-loader"]
-      }
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ]
   },
   plugins: [htmlWebpackPlugin, defineEnvPlugin, interpolate]

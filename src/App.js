@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Routes, Route, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router'
 
@@ -16,10 +16,10 @@ export default () => {
     return (
         <Provider store={store}>
           <ConnectedRouter history={history}>
-           <Switch>
+           <Routes>
              <Route path={process.env.PUBLIC_URL+'auth/'} component={UnauthorizedLayout} />
              <AuthorizedRoute path={`${process.env.PUBLIC_URL}`} component={PrimaryLayout} />
-           </Switch>
+           </Routes>
           </ConnectedRouter>
         </Provider>
     );

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Container } from 'reactstrap';
-import { Switch, Route, Redirect, useParams, useRouteMatch } from 'react-router'
+import { Routes, Route, Navigate, useParams, useRouteMatch } from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
@@ -21,18 +21,18 @@ export default () => {
           <Navigation />
           <Bricciole />
           <Container>
-           <Switch>
+           <Routes>
              <Route path={`${process.env.PUBLIC_URL}`} exact component={HomePage} />
              <Route path={`${process.env.PUBLIC_URL}editapi/:id/editentry/:entry`} exact component={EditEntryPointPage} />
              <Route path={`${process.env.PUBLIC_URL}editapi/:id/editentry`} exact>
-             <Redirect to={`${process.env.PUBLIC_URL}editapi/${params.id}`} />
+             <Navigate to={`${process.env.PUBLIC_URL}editapi/${params.id}`} />
              </Route>
              <Route path={`${process.env.PUBLIC_URL}editapi/:id`} component={EditPage} exact />
              <Route path={`${process.env.PUBLIC_URL}editapi`} exact >
-             <Redirect to={`${process.env.PUBLIC_URL}`} />
+             <Navigate to={`${process.env.PUBLIC_URL}`} />
              </Route>
              <Route path={`apimanager/`} component={HomePage} />
-           </Switch>
+           </Routes>
           </Container>
           <ApiDebug />
         </div>
@@ -64,11 +64,11 @@ class PrimaryLayout extends Component
                      <Route path={`${match.path}`} exact component={HomePage} />
                      <Route path={`${match.path}editapi/:id/editentry/:entry`} exact component={EditEntryPointPage} />
                      <Route path={`${match.path}editapi/:id/editentry`} exact>
-                     <Redirect to={`${match.path}editapi/${match.params.id}`} />
+                     <Navigate to={`${match.path}editapi/${match.params.id}`} />
                      </Route>
                      <Route path={`${match.path}editapi/:id`} component={EditPage} exact />
                      <Route path={`${match.path}editapi`} exact >
-                     <Redirect to={`${match.path}`} />
+                     <Navigate to={`${match.path}`} />
                      </Route>
                      <Route path={`${match.path}apimanager/`} component={HomePage} />
                    </Switch>

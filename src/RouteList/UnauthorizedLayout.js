@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Jumbotron } from 'reactstrap';
-import { Switch, Route, Redirect } from 'react-router-dom'
+//import { Jumbotron } from 'reactstrap';
+import { Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import Logout from '../Pages/LoginPage/Logout';
 
@@ -8,13 +8,11 @@ export default () =>
 {
     return (
         <div>
-            <Jumbotron>
-                <Switch>
+                <Routes>
                     <Route path={process.env.PUBLIC_URL+'auth/login'} component={LoginPage} />
                     <Route path={process.env.PUBLIC_URL+'auth/logout'} component={Logout} />
-                    <Redirect to={process.env.PUBLIC_URL+'auth/login'} />
-                </Switch>
-            </Jumbotron>
+                    <Navigate to={process.env.PUBLIC_URL+'auth/login'} />
+                </Routes>
         </div>
     )
 }

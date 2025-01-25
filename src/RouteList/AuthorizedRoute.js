@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 
 export default ({ component: Component, ...rest}) => {
@@ -8,7 +8,7 @@ export default ({ component: Component, ...rest}) => {
         <Route {...rest} render={props => {
                 return logged?
                 <Component {...props} />
-                : <Redirect to={process.env.PUBLIC_URL+'auth/login'} />
+                : <Navigate to={process.env.PUBLIC_URL+'auth/login'} />
         }} />
     );
 }

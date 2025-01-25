@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Container, Button, Input } from 'reactstrap';
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
     };
     //const { logged } = this.props;
     if (logged) {
-        return <Redirect to="/" />
+        return <Navigate to="/" />
     }
     return (
           <Container>
