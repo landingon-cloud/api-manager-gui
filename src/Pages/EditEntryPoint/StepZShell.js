@@ -5,11 +5,10 @@ import { Container, Alert} from 'reactstrap';
 import InputTextareaByClick from '../../components/InputTextareaByClick';
 
 import {ServiceFilterFormat} from './ServiceFilterFormat';
+import { useSelector } from 'react-redux';
 
 export default ({enquireEdit, editProp, step, save}) => {
-    const availableFolders = ["/storage/saas/script_over_server_execution",
-     "/storage/saas/SHAREDCODE",
-     "/storage/saas/SharedPHPClasses", "/storage/saas/aftersales", "/storage/saas/customerfiles", "/storage/saas/CENTRAL_LOG"];
+    const availableFolders = useSelector(s=>s.resources.zshell_folders);
     return (
         <Container>
             {step.service?'':<Alert color="danger">
@@ -17,7 +16,7 @@ export default ({enquireEdit, editProp, step, save}) => {
             </Alert>}
             <small>Shell command execution by a service (command over ZMQ channel)</small>
                 <div>
-                    <small>Available Folders: </small> {availableFolders.map((f,i,c,a)=>(<span key={i.toString()}><strong>{f}</strong> </span>))}
+                    <small>Available Folders: </small> {availableFolders.map((f,i,c,a)=>(<span key={i.toString()}><strong>{f}</strong> , </span>))}
                 </div>
             <ServiceFilterFormat format="zshell"
                 step={step}

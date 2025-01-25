@@ -108,7 +108,14 @@ const resources = {
             'hsql',
             'zmq',
         ]
-    }
+    },
+    zshell_folders: [
+        "/storage/script_over_server_execution",
+        "/storage/SHAREDCODE",
+        "/storage/SharedPHPClasses",
+        "/storage/customerfiles",
+        "/storage/CENTRAL_LOG"
+    ]
 };
 
 const entrypoint = {
