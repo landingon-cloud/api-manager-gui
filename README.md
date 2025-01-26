@@ -9,7 +9,7 @@ GUI for API Manager, an API Gateway manager for docker swarm, based on traefik a
 - API_AUTH: url for entrypoint providing Login that accept { credentials: {login, password}} and returns a JWT token as {token}
 - BASE_REALURL: base url of the published service uri for the API managed by API Manager (the API is published with this baseurl followed by path defined by the api group name: it is expected to end with /, i.e. https://mapi.yourdoma.in/)
 
-## Easy build
+## Quick start
 
 > npm i --legacy-peer-deps
 
@@ -18,6 +18,16 @@ for install, then:
 > npm run start
 
 for starting dev server provided by webpack
+
+## Install
+
+> npm i --legacy-peer-deps
+
+then:
+
+> npm run build
+
+the package will be built in biuld/ folder, `index.bundle.js` and  `index.bundle.js.map`
 
 ## Error codes
 
